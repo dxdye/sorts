@@ -12,7 +12,7 @@ i32 Int32Array::get(i32 index) {
   }
   return this->data[index];
 }
-bool Int32Array::operator==(Int32Array &other) {
+bool Int32Array::operator==(const Int32Array &other) {
   if (this->length != other.length) {
     return false;
   }
@@ -26,14 +26,8 @@ bool Int32Array::operator==(Int32Array &other) {
 
 i32 Int32Array::operator[](i32 index) { return this->get(index); }
 
-Int32Array Int32Array::operator=(Int32Array &other) {
-  if (this->length != other.length) {
-    throw "Arrays must be of equal length";
-  }
-  for (i32 i = 0; i < this->length; i++) {
-    this->data[i] = other.data[i];
-  }
-  return *this;
+Int32Array Int32Array::operator=(const Int32Array &other) {
+  return Int32Array(other);
 }
 
 Int32Array::Int32Array() {
@@ -46,8 +40,17 @@ Int32Array::Int32Array(i32 length) {
 }
 Int32Array::~Int32Array() { delete[] this->data; }
 
-void Int32Array::reset() {
-  for (i32 i = 0; i < this->length; ++i) {
-    this->data[i] = 0;
+Int32Array::Int32Array(const Int32Array &other) {
+  this->length = other.length;
+  this->data = new i32[this->length];
+  for (i32 i = 0; i < this->length; i++) {
+    this->data[i] = other.data[i];
   }
+}
+
+void Int32Array::reset() {
+  if (this->data != nullptr)
+    delete[] this->data;
+  this->data = nullptr;
+  this->length = 0;
 }

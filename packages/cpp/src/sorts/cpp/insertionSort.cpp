@@ -1,7 +1,6 @@
-#include "../helper/header/sortProtoType.hpp"
-#include "../helper/header/types.hpp"
+#include "../header/insertionSort.hpp"
 
-const sort insertionSort = [](Int32Array array) {
+const sort insertionSort = [](Int32Array &array) {
   for (i32 i = 1; i < array.length; i++) {
     i32 key = array[i];
     i32 j = i - 1;
