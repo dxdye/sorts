@@ -3,6 +3,7 @@ sources = [
   'test.cpp',
   '../src/helper/cpp/generateArray.cpp',
   '../src/helper/cpp/types.cpp',
+  '../src/sorts/cpp/insertionSort.cpp',
 ]
 catch2 = dependency('catch2', version: '>=2.13.0')
 test_sort = executable(
