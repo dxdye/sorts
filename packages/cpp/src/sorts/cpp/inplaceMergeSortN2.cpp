@@ -1,11 +1,11 @@
 #include "../header/inplaceMergeSortN2.hpp"
 
 const sort inplaceMergeSortN2 = [](Int32Array &array) {
-  mergeSort(array, 0, array.length - 1);
+  mergeSortN2(array, 0, array.length - 1);
   return array;
 };
 
-const void merge(Int32Array &arr, i32 start, i32 mid, i32 end) {
+const void mergeN2(Int32Array &arr, i32 start, i32 mid, i32 end) {
   int start2 = mid + 1;
   if (arr[mid] <= arr[start2])
     return;
@@ -28,13 +28,13 @@ const void merge(Int32Array &arr, i32 start, i32 mid, i32 end) {
   }
 }
 
-const void mergeSort(Int32Array &arr, i32 l, i32 r) {
+const void mergeSortN2(Int32Array &arr, i32 l, i32 r) {
   if (l < r) {
     // Same as (l + r) / 2, but avoids overflow for
     // large l and r
     i32 m = l + (r - l) / 2;
-    mergeSort(arr, l, m);
-    mergeSort(arr, m + 1, r);
-    merge(arr, l, m, r);
+    mergeSortN2(arr, l, m);
+    mergeSortN2(arr, m + 1, r);
+    mergeN2(arr, l, m, r);
   }
 }
