@@ -3,6 +3,7 @@ sources = [
   'test.cpp',
   '../src/helper/cpp/generateArray.cpp',
   '../src/helper/cpp/types.cpp',
+  '../src/helper/cpp/stopWatch.cpp',
   '../src/sorts/cpp/insertionSort.cpp',
   '../src/sorts/cpp/inplaceMergeSortN2.cpp',
   '../src/sorts/cpp/inplaceMergeSort.cpp',
