@@ -1,17 +1,20 @@
 #include "../header/inplaceMergeSort.hpp"
-
 #include <bits/stdc++.h>
-using namespace std;
+
+const sort inplaceMergeSort = [](Int32Array &array) {
+  mergeSort(array, 0, array.length - 1);
+  return array;
+};
 
 i32 nextGap(i32 gap) {
   if (gap <= 1)
     return 0;
 
-  return (i32)ceil(gap / 2.0);
+  return (i32)std::ceil(gap / 2.0);
 }
 
 // Function for swapping
-void swap(Int32Array arr, i32 i, i32 j) {
+const void swap(Int32Array &arr, i32 i, i32 j) {
   i32 temp = arr[i];
   arr.set(i, arr[j]);
   arr.set(j, temp);
@@ -20,7 +23,7 @@ void swap(Int32Array arr, i32 i, i32 j) {
 // Merging the subarrays using shell sorting
 // Time Complexity: O(nlog n)
 // Space Complexity: O(1)
-void inPlaceMerge(Int32Array arr, i32 start, i32 end) {
+const void inPlaceMerge(Int32Array &arr, i32 start, i32 end) {
   i32 gap = end - start + 1;
 
   for (gap = nextGap(gap); gap > 0; gap = nextGap(gap)) {
@@ -40,7 +43,7 @@ void inPlaceMerge(Int32Array arr, i32 start, i32 end) {
 // Time Complexity: O(logn*(n*log n))
 // i.e. O(n*(logn)^2)
 // Space Complexity: O(1)
-void mergeSort(Int32Array &arr, i32 s, i32 e) {
+const void mergeSort(Int32Array &arr, i32 s, i32 e) {
   if (s == e)
     return;
 

@@ -5,6 +5,7 @@ sources = [
   '../src/helper/cpp/types.cpp',
   '../src/sorts/cpp/insertionSort.cpp',
   '../src/sorts/cpp/inplaceMergeSortN2.cpp',
+  '../src/sorts/cpp/inplaceMergeSort.cpp',
 ]
 catch2 = dependency('catch2', version: '>=2.13.0')
 test_sort = executable(
