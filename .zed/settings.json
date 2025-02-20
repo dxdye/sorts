@@ -1,8 +1,37 @@
 {
+  "lsp": {
+    "deno": {
+      "settings": {
+        "deno": {
+          "enable": true
+        }
+      }
+    }
+  },
   "languages": {
     "C++": {
       "tab_size": 2,
       "format_on_save": "on"
+    },
+    "TypeScript": {
+      "tab_size": 2,
+      "language_servers": [
+        "deno",
+        "!typescript-language-server",
+        "!vtsls",
+        "!eslint"
+      ],
+      "formatter": "language_server"
+    },
+    "TSX": {
+      "tab_size": 2,
+      "language_servers": [
+        "deno",
+        "!typescript-language-server",
+        "!vtsls",
+        "!eslint"
+      ],
+      "formatter": "language_server"
     }
   }
 }
