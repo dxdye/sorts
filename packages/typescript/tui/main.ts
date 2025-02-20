@@ -1,5 +1,5 @@
-import { crayon } from "https://deno.land/x/crayon@3.3.3/mod.ts";
-import { Canvas, Tui } from "https://deno.land/x/tui@2.1.11/mod.ts";
+import { crayon } from "@crayon";
+import { Canvas, Tui } from "@tui";
 
 export const runTui = () => {
   const tui = new Tui({
