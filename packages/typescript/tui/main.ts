@@ -38,7 +38,7 @@ export const tui = () => {
     },
     zIndex: 0,
   });
-  new Table({
+  const table = new Table({
     parent: tui,
     theme: {
       base: crayon.bgBlack.white,
@@ -51,19 +51,19 @@ export const tui = () => {
       },
     },
     rectangle: {
-      column: 1,
-      row: 1,
-      height: 209,
+      column: 2,
+      row: 5,
+      height: 30,
     },
     headers: [
-      { title: "ID" },
+      { title: "Sorting algorithm" },
       { title: "Name" },
     ],
     data: [
-      ["0", "Thomas Jeronimo"],
-      ["1", "Jeremy Wanker"],
-      ["2", "Julianne James"],
-      ["3", "Tommie Moyer"],
+      ["0", "Insertion Sort (TS)"],
+      ["1", "Selection Sort (TS)"],
+      ["2", "Mergesort (TS)"],
+      ["3", "Quicksort "],
       ["4", "Marta Reilly"],
       ["5", "Bernardo Robertson"],
       ["6", "Hershel Grant"],
@@ -71,40 +71,7 @@ export const tui = () => {
     charMap: "rounded",
     zIndex: 0,
   });
-
-  const button = new Button({
-    parent: tui,
-    zIndex: 0,
-    label: {
-      text: new Computed(() => number.value.toString()), // cast number to string
-    },
-    theme: {
-      base: crayon.bgRed,
-      focused: crayon.bgLightRed,
-      active: crayon.bgYellow,
-    },
-    rectangle: {
-      column: 1,
-      row: 1,
-      height: 5,
-      width: 10,
-    },
-  });
-
-  // If button is active (pressed) make number bigger by one
-  button.state.when("active", (state) => {
-    ++number.value;
-  });
-
-  // Listen to mousePress event
-  button.on("mousePress", ({ drag, movementX, movementY }) => {
-    if (!drag) return;
-
-    // Use peek() to get signal's value when it happens outside of Signal/Computed/Effect
-    const rectangle = button.rectangle.peek();
-    // Move button by how much mouse has moved while dragging it
-    rectangle.column += movementX;
-    rectangle.row += movementY;
+  table.on("keyPress", (index) => {
   });
 
   tui.dispatch();
