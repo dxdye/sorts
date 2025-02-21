@@ -1,3 +1,3 @@
-import { runTui } from "./tui/main.ts";
+import { tui } from "./tui/main.ts";
 
-runTui();
+tui().run();
