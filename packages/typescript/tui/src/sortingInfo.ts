@@ -15,8 +15,19 @@ const timeComplexities = createZodLiterals(
   "EXP",
 );
 
+const sortMethod = createZodLiterals(
+  "EXCHANGING",
+  "INSERTION",
+  "INSERTION_MERGE",
+  "MERGE",
+  "PARTITIONING",
+  "PARTITION_SELECTION",
+  "SELECTION",
+);
+
 const sortingIdentifiers = createZodLiterals(
   "BLOCKSORT",
+  "BUBBLESORT",
   "COCKTAIL_SHAKER_SORT",
   "COMB_SORT",
   "CUBE_SORT",
@@ -42,21 +53,71 @@ const sortingIdentifiers = createZodLiterals(
   "TREE_SORT",
 );
 
+const SortMethod = z.union(sortMethod);
 const TimeComplexity = z.union(timeComplexities);
 const ProgrammingLanguage = z.union(programmingLanguages);
-const SortingIdentifiers = z.union(sortingIdentifiers);
-const SortAlgorithm = z.object({
+const SortingIdentifier = z.union(sortingIdentifiers);
+const SortAlgorithmInfo = z.object({
+  identifier: SortingIdentifier,
   description: z.string(),
   isInplace: z.boolean(),
   isImplemented: z.boolean(),
   timeComplexity: TimeComplexity,
   language: ProgrammingLanguage,
+  method: SortMethod,
 });
-const SortAlgorithms = z.array(SortAlgorithm);
 
+const SortAlgorithmInfos = z.array(SortAlgorithmInfo);
 type TimeComplexity = z.infer<typeof TimeComplexity>;
-type SortingIdentifier = z.infer<typeof SortingIdentifiers>;
+type SortingIdentifier = z.infer<typeof SortingIdentifier>;
 type ProgrammingLanguage = z.infer<typeof ProgrammingLanguage>;
+type SortMethod = z.infer<typeof SortMethod>;
 
-export type SortAlgorithm = z.infer<typeof SortAlgorithm>;
-export type SortAlgorithms = z.infer<typeof SortAlgorithms>;
+export type SortAlgorithmInfo = z.infer<typeof SortAlgorithmInfo>;
+export type SortAlgorithmInfos = z.infer<typeof SortAlgorithmInfos>;
+
+export const buildSortAlgorithmInfo = (
+  identifier: SortingIdentifier,
+  timeComplexity: TimeComplexity,
+  language: ProgrammingLanguage,
+  method: SortMethod,
+  isImplemented: boolean = false,
+  isInplace: boolean = false,
+): SortAlgorithmInfo => (
+  {
+    identifier,
+    description: identifier.toLowerCase().replaceAll("_", " "),
+    isInplace,
+    isImplemented,
+    timeComplexity,
+    language,
+    method,
+  }
+);
+
+export const sortAlgorithmInfos: SortAlgorithmInfos = [
+  buildSortAlgorithmInfo(
+    "BLOCKSORT",
+    "N_LOG_N",
+    "TYPESCRIPT",
+    "INSERTION_MERGE",
+    true,
+    false,
+  ),
+  buildSortAlgorithmInfo(
+    "BUBBLESORT",
+    "POW_2",
+    "TYPESCRIPT",
+    "EXCHANGING",
+    true,
+    true,
+  ),
+  buildSortAlgorithmInfo(
+    "INSERTION_SORT",
+    "POW_2",
+    "TYPESCRIPT",
+    "INSERTION",
+    true,
+    true,
+  ),
+];
