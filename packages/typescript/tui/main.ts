@@ -53,7 +53,7 @@ export const tui = () => {
     rectangle: {
       column: 1,
       row: 1,
-      height: 20,
+      height: 209,
     },
     headers: [
       { title: "ID" },
