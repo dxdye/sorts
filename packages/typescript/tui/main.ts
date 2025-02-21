@@ -1,6 +1,7 @@
 import { crayon } from "@crayon";
 import { Button, Label, LabelRectangle, Table } from "@tui/components";
 import { Computed, Signal } from "@tui";
+import { sortAlgorithmInfos } from "./src/sortingInfo.ts";
 import {
   Canvas,
   handleInput,
@@ -56,18 +57,19 @@ export const tui = () => {
       height: 30,
     },
     headers: [
-      { title: "Sorting algorithm" },
+      { title: "Index" },
       { title: "Name" },
+      { title: "Avg. Complexity" },
+      { title: "Method" },
+      { title: "Is inplace" },
     ],
-    data: [
-      ["0", "Insertion Sort (TS)"],
-      ["1", "Selection Sort (TS)"],
-      ["2", "Mergesort (TS)"],
-      ["3", "Quicksort "],
-      ["4", "Marta Reilly"],
-      ["5", "Bernardo Robertson"],
-      ["6", "Hershel Grant"],
-    ],
+    data: sortAlgorithmInfos.map((info, index) => [
+      String(index),
+      info.description,
+      info.timeComplexity,
+      info.method,
+      info.isInplace ? "Yes" : "No",
+    ]),
     charMap: "rounded",
     zIndex: 0,
   });
